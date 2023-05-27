@@ -33,7 +33,7 @@ springboot2.X + dubbo3.1.0 + nacos2.1
 - 其他说明：消费项目中有测试TestUserController.http请求
 - 主要用途：springboot2.3.1作为基础脚手架，整合主流dubbo3.1.0（服务治理，微服务框架） + nacos2.1（主流注册中心和配置中心）
 
-## microservice-boot-1.0.1
+## microservice-boot-1.0.1-generation
 - 增加mybatis-plus ORM中间件
 - 增加generation 代码生成器
 - 增加mysql连接，使用druid连接池
