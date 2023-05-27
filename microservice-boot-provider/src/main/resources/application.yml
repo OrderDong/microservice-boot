@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: dubbo3-test-provider
+
+nacos:
+  config:
+    server-addr: 127.0.0.1:8848
+    namespace: 2c047fc5-bcf4-47eb-a9ce-f8ef353c49e4
+    bootstrap:
+      enable: true
+    type: yaml
+    data-id: dubbo3-test-provider
+    auto-refresh: true
+
