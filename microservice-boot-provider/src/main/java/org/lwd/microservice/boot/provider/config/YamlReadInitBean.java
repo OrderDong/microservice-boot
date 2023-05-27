@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Slf4j
-public class YamlReadInitBean implements InitializingBean , DisposableBean {
+public class YamlReadInitBean implements InitializingBean, DisposableBean {
     @Value("${dubbo.scan.base-packages}")
     private String DubboPackage;
     @Value("${dubbo.registry.parameters.namespace}")

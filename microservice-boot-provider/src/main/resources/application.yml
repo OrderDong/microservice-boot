@@ -1,6 +1,6 @@
 spring:
   application:
-    name: dubbo3-test-provider
+    name: microservice-boot-provider
 
 nacos:
   config:
@@ -9,6 +9,5 @@ nacos:
     bootstrap:
       enable: true
     type: yaml
-    data-id: dubbo3-test-provider
+    data-id: microservice-boot-provider
     auto-refresh: true
-
