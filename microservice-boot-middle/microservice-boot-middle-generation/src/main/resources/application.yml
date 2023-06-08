@@ -1,0 +1,73 @@
+#tomcat配置
+server:
+  port: 8001
+  tomcat:
+    uri-encoding: UTF-8
+    max-connections: 40000
+spring:
+  application:
+    name: microservice-boot-generation
+  # Jackson 配置项
+  jackson:
+#    serialization:
+#      write-dates-as-timestamps: true # 设置 Date 的格式，使用时间戳
+#      write-date-timestamps-as-nanoseconds: false # 设置不使用 nanoseconds 的格式。例如说 1611460870.401，而是直接 1611460870401
+#      write-durations-as-timestamps: true # 设置 Duration 的格式，使用时间戳
+#      fail-on-empty-beans: false # 允许序列化无属性的 Bean
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  datasource:
+    druid: # Druid 【监控】相关的全局配置
+      web-stat-filter:
+        enabled: true
+      stat-view-servlet:
+        enabled: true
+        allow: # 设置白名单，不填则允许所有访问
+        url-pattern: /druid/*
+        login-username: test
+        login-password: test
+      filter:
+        stat:
+          enabled: true
+          log-slow-sql: true # 慢 SQL 记录
+          slow-sql-millis: 1000
+          merge-sql: true
+        wall:
+          config:
+            multi-statement-allow: true
+      initial-size: 4 # 初始连接数
+      min-idle: 4 # 最小连接池数量
+      max-active: 50 # 最大连接池数量
+      max-wait: 600000 # 配置获取连接等待超时的时间，单位：毫秒
+      time-between-eviction-runs-millis: 60000 # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位：毫秒
+      min-evictable-idle-time-millis: 300000 # 配置一个连接在池中最小生存的时间，单位：毫秒
+      max-evictable-idle-time-millis: 900000 # 配置一个连接在池中最大生存的时间，单位：毫秒
+      validation-query: SELECT 1 # 配置检测连接是否有效
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      name: test
+      url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&allowPublicKeyRetrieval=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&allowMultiQueries=true&nullCatalogMeansCurrent=true
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 123456
+
+# MyBatis Plus 的配置项
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true # 虽然默认为 true ，但是还是显示去指定下。
+  global-config:
+    db-config:
+      #      id-type: NONE # “智能”模式，基于 IdTypeEnvironmentPostProcessor + 数据源的类型，自动适配成 AUTO、INPUT 模式。
+      id-type: AUTO # 自增 ID，适合 MySQL 等直接自增的数据库
+      #      id-type: INPUT # 用户输入 ID，适合 Oracle、PostgreSQL、Kingbase、DB2、H2 数据库
+      #      id-type: ASSIGN_ID # 分配 ID，默认使用雪花算法。注意，Oracle、PostgreSQL、Kingbase、DB2、H2 数据库时，需要去除实体类上的 @KeySequence 注解
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+      logic-delete-field: deleted_tag
+      table-prefix: t_
+    banner: false
+  type-aliases-package: org.lwd.microservice.boot.generation.dao
+  mapper-locations: classpath*:/mapper/**/*.xml
+
+

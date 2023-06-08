@@ -1,0 +1,25 @@
+
+#tomcat配置
+server:
+  port: 8021
+  tomcat:
+    uri-encoding: UTF-8
+    max-connections: 40000
+
+dubbo:
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    address: nacos://127.0.0.1:8848
+    parameters:
+      namespace: 2c047fc5-bcf4-47eb-a9ce-f8ef353c49e4
+    register-mode: instance
+  metadata-report:
+    address: nacos://127.0.0.1:8848
+    parameters:
+      namespace: 211d0b5e-2267-4309-9df8-316f0af96394
+  scan:
+    base-packages: org.lwd.microservice.boot.provider
+
+

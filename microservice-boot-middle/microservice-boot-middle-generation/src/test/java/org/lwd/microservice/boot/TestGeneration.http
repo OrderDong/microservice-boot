@@ -1,0 +1,59 @@
+## 新增
+POST http://localhost:8001/friendlyLink/add
+Content-Type: application/json
+
+{
+  "merchantId": 1,
+  "merchantName": "测试商家",
+  "userId": 2,
+  "employeeId": 2,
+  "linkName": "测试系统4",
+  "linkIcon": "https://www.baidu.com",
+  "linkUrl": "https://www.baidu.com",
+  "openNewWindow": 0,
+  "createById": 1,
+  "createTime": "2023-06-07 16:34:36",
+  "createByName": "lwd"
+}
+
+### 修改
+
+POST http://localhost:8001/friendlyLink/update
+Content-Type: application/json
+
+{
+  "id": 3,
+  "merchantId": 1,
+  "merchantName": "测试商家",
+  "userId": 3,
+  "employeeId": 3,
+  "linkName": "测试系统4",
+  "linkIcon": "https://www.baidu.com",
+  "linkUrl": "https://www.baidu.com",
+  "openNewWindow": 0,
+  "createById": 1,
+  "createTime": "2023-06-06 16:34:36",
+  "createByName": "lwd",
+  "updateById": 1,
+  "updateTime": "2023-06-07 16:34:36",
+  "updateByName": "lwd"
+}
+
+### 详情
+
+GET http://localhost:8001/friendlyLink/detail?pk = 5
+
+### 分页
+
+GET http://localhost:8001/friendlyLink/page?pageNum=1&pageSize=10
+
+### 逻辑删除
+
+POST http://localhost:8001/friendlyLink/del
+Content-Type: application/json
+
+6
+###
+
+
+

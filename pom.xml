@@ -14,84 +14,42 @@
 
     <groupId>org.lwd.microservice.boot</groupId>
     <artifactId>microservice-boot</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.tardget>8</maven.compiler.tardget>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <dubbo.version>3.1.0</dubbo.version>
         <spring-boot.version>2.3.1.RELEASE</spring-boot.version>
+        <spring-context-support.version>1.0.11</spring-context-support.version>
+
+        <!-- DB相关 -->
+        <druid-starter-version>1.2.16</druid-starter-version>
+        <mapstruct-version>1.5.3.Final</mapstruct-version>
+        <mapstruct-processor-version>1.5.3.Final</mapstruct-processor-version>
+
+        <!-- 代码生成 -->
+        <baomidou-starter-version>3.5.1</baomidou-starter-version>
+        <baomidou-generator-version>3.5.1</baomidou-generator-version>
+        <freemarker-version>2.3.31</freemarker-version>
+        <velocity-version>2.0</velocity-version>
+
+        <!-- 微服务相关 -->
+        <nacos-config.version>0.2.10</nacos-config.version>
+
+        <!-- 公共 -->
+        <slf4j-api.version>1.7.24</slf4j-api.version>
+        <lombok.version>1.18.8</lombok.version>
+        <common-lang3.version>3.8.1</common-lang3.version>
 
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.24</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.8</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.8.1</version>
-        </dependency>
-
-        <!-- Dubbo Spring Boot Starter -->
-        <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo-spring-boot-starter</artifactId>
-            <version>${dubbo.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo-registry-nacos</artifactId>
-            <version>${dubbo.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alibaba.spring</groupId>
-            <artifactId>spring-context-support</artifactId>
-            <version>1.0.11</version>
-        </dependency>
-
-        <!--nacos config -->
-        <dependency>
-            <groupId>com.alibaba.boot</groupId>
-            <artifactId>nacos-config-spring-boot-starter</artifactId>
-            <version>0.2.10</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.alibaba.nacos</groupId>
-                    <artifactId>nacos-client</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-
-
-    </dependencies>
-
     <modules>
         <module>microservice-boot-api</module>
-        <module>microservice-boot-provider</module>
-        <module>microservice-boot-consumer</module>
+        <module>microservice-boot-middle</module>
+        <module>microservice-boot-module</module>
     </modules>
-
 
 </project>
