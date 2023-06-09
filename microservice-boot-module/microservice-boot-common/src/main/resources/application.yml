@@ -1,6 +1,6 @@
 spring:
   application:
-    name: microservice-boot-provider
+    name: microservice-boot-common
 
 nacos:
   config:
@@ -9,5 +9,5 @@ nacos:
     bootstrap:
       enable: true
     type: yaml
-    data-id: microservice-boot-provider
+    data-id: microservice-boot-common
     auto-refresh: true
