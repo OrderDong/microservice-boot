@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.lwd.microservice.boot.common.dao.TenantDataSourceMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.lwd.microservice.boot.common.entity.TenantDataSource">
+        <id column="id" property="id" />
+        <result column="tenant_id" property="tenantId" />
+        <result column="tenant_name" property="tenantName" />
+        <result column="jdbc_type" property="jdbcType" />
+        <result column="microservice_db" property="microserviceDb" />
+        <result column="jdbc_uri" property="jdbcUri" />
+        <result column="jdbc_username" property="jdbcUsername" />
+        <result column="jdbc_password" property="jdbcPassword" />
+        <result column="status" property="status" />
+        <result column="deleted_tag" property="deletedTag" />
+        <result column="create_by_id" property="createById" />
+        <result column="create_time" property="createTime" />
+        <result column="create_by_name" property="createByName" />
+        <result column="update_by_id" property="updateById" />
+        <result column="update_time" property="updateTime" />
+        <result column="update_by_name" property="updateByName" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, tenant_id, tenant_name, jdbc_type, microservice_db, jdbc_uri, jdbc_username, jdbc_password, `status`, deleted_tag, create_by_id, create_time, create_by_name, update_by_id, update_time, update_by_name
+    </sql>
+
+</mapper>
