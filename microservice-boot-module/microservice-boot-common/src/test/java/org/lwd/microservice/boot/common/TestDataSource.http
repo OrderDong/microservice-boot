@@ -1,0 +1,64 @@
+## 新增
+POST http://localhost:8021/tenantDataSource/add
+Content-Type: application/json
+
+{
+  "tenantId": 1,
+  "tenantName": "租户1",
+  "microserviceDb": 1,
+  "jdbcType": 1,
+  "jdbcUri": "jdbc:mysql://127.0.0.1:3306/test2",
+  "jdbcUsername": "root",
+  "jdbcPassword": "123456",
+  "status": 1,
+  "createById": 1,
+  "createTime": "2023-06-13 16:34:36",
+  "createByName": "lwd"
+}
+
+### 修改
+
+POST http://localhost:8021/tenantDataSource/update
+Content-Type: application/json
+
+{
+  "id": 1,
+  "tenantId": 2,
+  "tenantName": "租户2",
+  "microserviceDb": 1,
+  "jdbcType": 1,
+  "jdbcUri": "jdbc:mysql://127.0.0.1:3306/test2",
+  "jdbcUsername": "root",
+  "jdbcPassword": "123456",
+  "status": 1,
+  "createById": 1,
+  "createTime": "2023-06-13 16:34:36",
+  "createByName": "lwd"
+}
+
+### 详情
+
+GET http://localhost:8021/tenantDataSource/detail?pk = 1
+
+### 详情2-动态切换
+
+GET http://localhost:8021/tenantDataSource/detail2?pk = 1
+
+### 详情3-加载数据库数据源
+
+GET http://localhost:8021/tenantDataSource/detail3?pk = 1
+
+### 分页
+
+GET http://localhost:8021/tenantDataSource/page?pageNum=1&pageSize=10
+
+### 逻辑删除
+
+POST http://localhost:8021/tenantDataSource/del
+Content-Type: application/json
+
+6
+###
+
+
+

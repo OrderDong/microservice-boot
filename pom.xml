@@ -29,6 +29,7 @@
         <druid-starter-version>1.2.16</druid-starter-version>
         <mapstruct-version>1.5.3.Final</mapstruct-version>
         <mapstruct-processor-version>1.5.3.Final</mapstruct-processor-version>
+        <baomidou-dynamic-version>3.5.1</baomidou-dynamic-version>
 
         <!-- 代码生成 -->
         <baomidou-starter-version>3.5.1</baomidou-starter-version>

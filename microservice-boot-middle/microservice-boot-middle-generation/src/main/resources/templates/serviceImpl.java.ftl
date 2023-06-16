@@ -13,6 +13,9 @@ import ${package.Entity}.convertor.${entity}Convertor;
 import ${superServiceImplClassPackage};
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * <p>
  * ${table.comment!} 服务实现类
@@ -120,6 +123,21 @@ public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.m
         IPage<${entity}DTO> results= pageData.convert(${entity}Convertor.INSTANCE::toDTO);
         baseResult.setData(results);
 
+        return baseResult;
+    }
+
+    /**
+    * 根据主键查询DTO列表-不分页
+    *
+    * @return DTO
+    */
+    @Override
+    public BaseResult<List<${entity}DTO>> getTenantDataSourceList() {
+        BaseResult<List<${entity}DTO>> baseResult = BaseResult.success();
+        QueryWrapper<${entity}> queryWrapper = Wrappers.query();
+        List<${entity}> ${entity?uncap_first}List = this.getBaseMapper().selectList(queryWrapper);
+        List<${entity}DTO> results= (List<${entity}DTO>)${entity?uncap_first}List.stream().map(${entity}Convertor.INSTANCE::toDTO).collect(Collectors.toList());
+        baseResult.setData(results);
         return baseResult;
     }
 }

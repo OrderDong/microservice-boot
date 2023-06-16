@@ -17,6 +17,7 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
   datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
     druid: # Druid 【监控】相关的全局配置
       web-stat-filter:
         enabled: true
@@ -51,6 +52,8 @@ spring:
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: root
       password: 123456
+
+
 
 # MyBatis Plus 的配置项
 mybatis-plus:

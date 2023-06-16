@@ -27,25 +27,25 @@ import static com.baomidou.mybatisplus.generator.config.rules.DbColumnType.INTEG
 public class CodeGeneration {
     public static void main(String[] args) {
 
-        String projectPath = System.getProperty("user.dir")+"/microservice-boot-middle/microservice-boot-middle-generation"; //获取项目路径
+        String projectPath = System.getProperty("user.dir") + "/microservice-boot-module/microservice-boot-common"; //获取项目路径
         String outerFilePath = projectPath + "/src/main/java";  //java下的文件路径
-        String tempFilePath = projectPath + "/src/main/resources";
-        String packageName = "org.lwd.microservice.boot.generation";
+        String packageName = "org.lwd.microservice.boot.common";
+        String tableName = "t_tenant_data_source";
 
         System.out.println(projectPath);
         FastAutoGenerator.create(
                 new DataSourceConfig.Builder("jdbc:mysql://" + "127.0.0.1:3306/test", "root", "123456")
-                    .dbQuery(new MySqlQuery())
-                    .typeConvert(new MySqlTypeConvert() {
-                        @Override
-                        public IColumnType processTypeConvert(GlobalConfig config, String fieldType) {
-                            if (fieldType.toLowerCase().contains("tinyint")) {
-                                return INTEGER;
+                        .dbQuery(new MySqlQuery())
+                        .typeConvert(new MySqlTypeConvert() {
+                            @Override
+                            public IColumnType processTypeConvert(GlobalConfig config, String fieldType) {
+                                if (fieldType.toLowerCase().contains("tinyint")) {
+                                    return INTEGER;
+                                }
+                                return super.processTypeConvert(config, fieldType);
                             }
-                            return super.processTypeConvert(config, fieldType);
-                        }
-                    })
-                    .keyWordsHandler(new MySqlKeyWordsHandler()))
+                        })
+                        .keyWordsHandler(new MySqlKeyWordsHandler()))
                 //全局配置
                 .globalConfig(builder -> {
                     builder.outputDir(outerFilePath)//生成的输出路径
@@ -71,10 +71,10 @@ public class CodeGeneration {
 //                    builder.disable()//禁用所有模板
 //                    builder.disable(TemplateType.ENTITY)
                     builder.service("templates/service.java")//service模板路径
-                    .serviceImpl("templates/serviceImpl.java")//实现类模板路径
+                            .serviceImpl("templates/serviceImpl.java")//实现类模板路径
 //                .mapper("templates/mapper.java")//mapper模板路径
 //                .mapperXml("/templates/mapper.xml")//xml文件模板路路径
-                    .controller("templates/controller.java"); //controller层模板路径
+                            .controller("templates/controller.java"); //controller层模板路径
                 }).templateEngine(new FreemarkerTemplateEngine())
                 .injectionConfig(consumer -> {
                     Map<String, String> customFile = new HashMap<>();
@@ -89,7 +89,7 @@ public class CodeGeneration {
                 .strategyConfig(builder -> {
                     builder.enableCapitalMode()//开启全局大写命名
                             //.likeTable()模糊表匹配
-                            .addInclude("t_friendly_link")//添加表匹配，指定要生成的数据表名，不写默认选定数据库所有表
+                            .addInclude(tableName)//添加表匹配，指定要生成的数据表名，不写默认选定数据库所有表
                             //.disableSqlFilter()禁用sql过滤:默认(不使用该方法）true
                             //.enableSchema()启用schema:默认false
                             .addTablePrefix("t_")//增加过滤表前缀

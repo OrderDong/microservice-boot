@@ -38,4 +38,7 @@ CodeGeneration，直接执行即可
 测试sql在resources/sql/test.sql
 查看TestGeneration.http实现
 
+# 升级说明
+1、增加服务不分页列表功能
+
 

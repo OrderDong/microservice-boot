@@ -5,6 +5,7 @@ import org.lwd.microservice.boot.core.entity.*;
 import ${package.Entity}.${entity};
 import ${package.Entity}.dto.${entity}DTO;
 import ${superServiceClassPackage};
+import java.util.List;
 
 /**
  * <p>
@@ -60,5 +61,12 @@ public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
      * @return IPage
      */
     public BaseResult<IPage<${entity}DTO>> select${entity}PageByDto(IPage<${entity}> page, ${entity}DTO param);
+
+    /**
+    * 根据主键查询DTO列表-不分页
+    *
+    * @return DTO
+    */
+    public BaseResult<List<${entity}DTO>> get${entity}List();
 }
 </#if>
