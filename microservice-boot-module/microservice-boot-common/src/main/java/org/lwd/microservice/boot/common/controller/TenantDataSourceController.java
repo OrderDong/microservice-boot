@@ -1,6 +1,11 @@
 package org.lwd.microservice.boot.common.controller;
 
 
+import com.alibaba.fastjson2.JSON;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.DubboReference;
+import org.lwd.microservice.boot.common.api.dto.TenantDataSourceDubboDTO;
+import org.lwd.microservice.boot.common.api.dubbo.TenantDataSourceDubboService;
 import org.lwd.microservice.boot.core.entity.*;
 import org.lwd.microservice.boot.core.constant.*;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -15,7 +20,10 @@ import org.lwd.microservice.boot.common.entity.vo.TenantDataSourceVO;
 import org.lwd.microservice.boot.common.entity.convertor.TenantDataSourceConvertor;
 
 import javax.validation.constraints.NotEmpty;
+
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * <p>
@@ -25,11 +33,15 @@ import org.springframework.web.bind.annotation.RestController;
  * @author lwd
  * @since 2023-06-15
  */
+@Slf4j
 @RestController
 @RequestMapping("tenantDataSource")
 public class TenantDataSourceController {
     @Autowired
     private TenantDataSourceService tenantDataSourceService;
+
+    @DubboReference(check = false, timeout = 6000)
+    TenantDataSourceDubboService tenantDataSourceDubboService;
 
     /**
      * 保存租户数据源
@@ -41,23 +53,23 @@ public class TenantDataSourceController {
     public WebResult<Integer> addTenantDataSource(@Validated @RequestBody TenantDataSourceDTO dto) {
         WebResult<Integer> webResult = WebResult.success();
         BaseResult<Integer> baseResult = this.tenantDataSourceService.saveTenantDataSource(dto);
-        if(baseResult.isSuccess()){
+        if (baseResult.isSuccess()) {
             webResult.setData(baseResult.getData());
         }
         return webResult;
     }
 
     /**
-    * 修改租户数据源
-    *
-    * @param dto 参数
-    * @return 保存结果
-    */
+     * 修改租户数据源
+     *
+     * @param dto 参数
+     * @return 保存结果
+     */
     @PostMapping("update")
     public WebResult<Integer> updateTenantDataSource(@Validated @RequestBody TenantDataSourceDTO dto) {
         WebResult<Integer> webResult = WebResult.success();
         BaseResult<Integer> baseResult = this.tenantDataSourceService.updateTenantDataSource(dto);
-        if(baseResult.isSuccess()){
+        if (baseResult.isSuccess()) {
             webResult.setData(baseResult.getData());
         }
         return webResult;
@@ -74,7 +86,7 @@ public class TenantDataSourceController {
         WebResult<TenantDataSourceVO> webResult = WebResult.success();
         BaseResult<TenantDataSourceDTO> baseResult = this.tenantDataSourceService.getTenantDataSourceByPk(pk);
 
-        if(baseResult.isSuccess() && baseResult.getData() != null){
+        if (baseResult.isSuccess() && baseResult.getData() != null) {
             webResult.setData(TenantDataSourceConvertor.INSTANCE.dtoToVO(baseResult.getData()));
         }
         return webResult;
@@ -91,7 +103,7 @@ public class TenantDataSourceController {
         WebResult<TenantDataSourceVO> webResult = WebResult.success();
         BaseResult<TenantDataSourceDTO> baseResult = this.tenantDataSourceService.getTenantDataSourceByPk(pk);
 
-        if(baseResult.isSuccess() && baseResult.getData() != null){
+        if (baseResult.isSuccess() && baseResult.getData() != null) {
             webResult.setData(TenantDataSourceConvertor.INSTANCE.dtoToVO(baseResult.getData()));
         }
         return webResult;
@@ -106,9 +118,13 @@ public class TenantDataSourceController {
     @GetMapping("detail3")
     public WebResult<TenantDataSourceVO> detailTenantDataSourceByPk3(@Validated @NotEmpty String pk) {
         WebResult<TenantDataSourceVO> webResult = WebResult.success();
+
+//        BaseResult<List<TenantDataSourceDubboDTO>> listBaseResult = tenantDataSourceDubboService.getTenantDataSourceList();
+//        log.info("detailTenantDataSourceByPk3 dubbo info :{}", JSON.toJSONString(listBaseResult));
+
         BaseResult<TenantDataSourceDTO> baseResult = this.tenantDataSourceService.getTenantDataSourceByPk(pk);
 
-        if(baseResult.isSuccess() && baseResult.getData() != null){
+        if (baseResult.isSuccess() && baseResult.getData() != null) {
             webResult.setData(TenantDataSourceConvertor.INSTANCE.dtoToVO(baseResult.getData()));
         }
         return webResult;
@@ -125,7 +141,7 @@ public class TenantDataSourceController {
         WebResult<Boolean> webResult = WebResult.success();
         BaseResult<Boolean> baseResult = this.tenantDataSourceService.deleteTenantDataSourceByPk(pk);
 
-        if(baseResult.isSuccess()){
+        if (baseResult.isSuccess()) {
             webResult.setData(baseResult.getData());
         }
         return webResult;
@@ -142,7 +158,7 @@ public class TenantDataSourceController {
         WebResult<IPage<TenantDataSourceVO>> webResult = WebResult.success();
         IPage<TenantDataSource> page = new Page<>(request.getPageNum(), request.getPageSize());
         BaseResult<IPage<TenantDataSourceDTO>> list = this.tenantDataSourceService.selectTenantDataSourcePageByDto(page, param);
-        if(list.isSuccess()){
+        if (list.isSuccess()) {
             IPage<TenantDataSourceVO> voPage = list.getData().convert(TenantDataSourceConvertor.INSTANCE::dtoToVO);
             webResult.setData(voPage);
         }

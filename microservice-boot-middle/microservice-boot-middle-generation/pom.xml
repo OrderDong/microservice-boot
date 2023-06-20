@@ -32,8 +32,6 @@
         <dependency>
             <groupId>org.lwd.microservice.boot</groupId>
             <artifactId>microservice-boot-core</artifactId>
-            <version>1.0.0</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -43,43 +41,36 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <version>${druid-starter-version}</version>
         </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
-            <version>${mapstruct-version}</version>
         </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-processor</artifactId>
-            <version>${mapstruct-processor-version}</version>
         </dependency>
 
         <!-- 代码生成插件 start -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>${baomidou-starter-version}</version>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-generator</artifactId>
-            <version>${baomidou-generator-version}</version>
         </dependency>
 
         <!--freemarker模板引擎-->
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
-            <version>${freemarker-version}</version>
         </dependency>
 
         <!-- 模板引擎 -->
         <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity-engine-core</artifactId>
-            <version>${velocity-version}</version>
         </dependency>
         <!-- 代码生成插件 end -->
 

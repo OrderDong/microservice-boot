@@ -28,7 +28,7 @@ public class YamlReadBean {
     }
 
     @PreDestroy
-    public void frontDestory(){
+    public void frontDestory() {
         log.info("YamlReadBean frontDestory:{}", DubboPackage);
     }
 }

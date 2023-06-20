@@ -23,3 +23,9 @@ CREATE TABLE `t_tenant_data_source`
     KEY               `idx_tenant_tenant_id` (`tenant_id`) COMMENT '租户id'
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='租户数据源';
 
+-- master库
+INSERT INTO `test`.`t_tenant_data_source` (`id`, `tenant_id`, `tenant_name`, `jdbc_type`, `microservice_db`, `jdbc_uri`, `jdbc_username`, `jdbc_password`, `status`, `deleted_tag`, `create_by_id`, `create_time`, `create_by_name`, `update_by_id`, `update_time`, `update_by_name`) VALUES (1, 1, '租户1', 1, 1, 'jdbc:mysql://127.0.0.1:3306/test3', 'root', '123456', 1, 0, 1, '2023-06-13 16:34:36', 'lwd', NULL, NULL, NULL);
+-- slave_1库
+INSERT INTO `test2`.`t_tenant_data_source` (`id`, `tenant_id`, `tenant_name`, `jdbc_type`, `microservice_db`, `jdbc_uri`, `jdbc_username`, `jdbc_password`, `status`, `deleted_tag`, `create_by_id`, `create_time`, `create_by_name`, `update_by_id`, `update_time`, `update_by_name`) VALUES (1, 2, '租户2', 1, 1, 'jdbc:mysql://127.0.0.1:3306/test3', 'root', '123456', 1, 0, 1, '2023-06-13 16:34:36', 'lwd', NULL, NULL, NULL);
+-- test3动态库
+INSERT INTO `test3`.`t_tenant_data_source` (`id`, `tenant_id`, `tenant_name`, `jdbc_type`, `microservice_db`, `jdbc_uri`, `jdbc_username`, `jdbc_password`, `status`, `deleted_tag`, `create_by_id`, `create_time`, `create_by_name`, `update_by_id`, `update_time`, `update_by_name`) VALUES (1, 3, '租户3', 1, 1, 'jdbc:mysql://127.0.0.1:3306/test2', 'root', '123456', 1, 0, 1, '2023-06-13 16:34:36', 'lwd', NULL, NULL, NULL);

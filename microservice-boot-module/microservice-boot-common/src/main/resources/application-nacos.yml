@@ -20,7 +20,7 @@ dubbo:
     parameters:
       namespace: 211d0b5e-2267-4309-9df8-316f0af96394
   scan:
-    base-packages: org.lwd.microservice.boot.common.service
+    base-packages: org.lwd.microservice.boot.common.service.dubbo
 
 spring:
   application:

@@ -76,6 +76,7 @@ public class SpringContextUtil implements ApplicationContextAware {
 
     /**
      * 检查bean
+     *
      * @param clazz
      * @param <T>
      */

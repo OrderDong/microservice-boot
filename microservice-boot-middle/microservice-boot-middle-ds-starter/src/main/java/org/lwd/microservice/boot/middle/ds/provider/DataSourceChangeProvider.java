@@ -1,15 +1,19 @@
-package org.lwd.microservice.boot.common.aop;
+package org.lwd.microservice.boot.middle.ds.provider;
 
+import com.alibaba.fastjson2.JSON;
 import com.baomidou.dynamic.datasource.DynamicRoutingDataSource;
 import com.baomidou.dynamic.datasource.creator.DefaultDataSourceCreator;
 import com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DataSourceProperty;
 import com.baomidou.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.common.utils.CollectionUtils;
-import org.lwd.microservice.boot.common.entity.dto.TenantDataSourceDTO;
-import org.lwd.microservice.boot.common.service.TenantDataSourceService;
+import org.apache.dubbo.config.annotation.DubboReference;
+import org.lwd.microservice.boot.common.api.dto.TenantDataSourceDubboDTO;
+import org.lwd.microservice.boot.common.api.dubbo.TenantDataSourceDubboService;
 import org.lwd.microservice.boot.core.constant.DataSourceConstant;
 import org.lwd.microservice.boot.core.entity.BaseResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -23,31 +27,38 @@ import java.util.List;
  * @version V1.0.0
  * @since 2023/6/13
  */
+@Order(1)
+@Slf4j
 @Component
 public class DataSourceChangeProvider {
+
+    public DataSourceChangeProvider() {
+        log.info("--------init DataSourceChangeProvider--------");
+    }
+
 
     @Autowired
     private DataSource dataSource;
 
-    //微服务模式下，替换成TenantDataSourceDubboService或者其他
-    @Autowired
-    private TenantDataSourceService tenantDataSourceService;
-
     @Autowired
     @SuppressWarnings("all")
     private DefaultDataSourceCreator dataSourceCreator;
+
+    //微服务模式下，替换成TenantDataSourceDubboService或者其他
+    @DubboReference(timeout = 6000, check = false)
+    TenantDataSourceDubboService tenantDataSourceDubboService;
 
     /**
      * 增加数据源
      *
      * @param dto 租户数据源信息
      */
-    public void addDataSource(TenantDataSourceDTO dto) {
+    public void addDataSource(TenantDataSourceDubboDTO dto) {
         DynamicRoutingDataSource ds = (DynamicRoutingDataSource) dataSource;
-
-        DataSourceProperty dataSourceProperty = new DataSourceProperty();
         int tenantId = dto.getTenantId();
         String dsName = DataSourceConstant.TENANT_SOURCE_HEADER + tenantId;
+
+        DataSourceProperty dataSourceProperty = new DataSourceProperty();
         dataSourceProperty.setPoolName(dsName);
         dataSourceProperty.setDriverClassName("com.mysql.jdbc.Driver");
         dataSourceProperty.setUrl(dto.getJdbcUri() + "?useUnicode=true&allowPublicKeyRetrieval=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&allowMultiQueries=true&nullCatalogMeansCurrent=true");
@@ -79,17 +90,31 @@ public class DataSourceChangeProvider {
         DynamicDataSourceContextHolder.push(dsName);
     }
 
-    @PostConstruct
-    public void initDataSourceAll() {
-        BaseResult<List<TenantDataSourceDTO>> listBaseResult = tenantDataSourceService.getTenantDataSourceList();
+
+    /**
+     * 检查数据源并加入
+     *
+     * @param dsName 数据源名称
+     */
+    public void checkDataSourceAndLoad(String dsName) {
+        DynamicRoutingDataSource ds = (DynamicRoutingDataSource) dataSource;
+        DataSource existDataSource = ds.getDataSources().get(dsName);
+        if (existDataSource != null) return;
+
+        BaseResult<List<TenantDataSourceDubboDTO>> listBaseResult = tenantDataSourceDubboService.getTenantDataSourceList();
+        log.info("--------init DataSourceChangeProvider initDataSource--------:{}", JSON.toJSONString(listBaseResult));
         if (listBaseResult.isSuccess()) {
-            List<TenantDataSourceDTO> tenantDataSourceDTOList = listBaseResult.getData();
-            if (CollectionUtils.isNotEmpty(tenantDataSourceDTOList)) {
+            List<TenantDataSourceDubboDTO> tenantDataSourceDubboDTOList = listBaseResult.getData();
+            if (CollectionUtils.isNotEmpty(tenantDataSourceDubboDTOList)) {
+
                 //数据源操作，也可以加入不同的数据源类型
-                for (TenantDataSourceDTO dto : tenantDataSourceDTOList) {
-                    this.addDataSource(dto);
+                for (TenantDataSourceDubboDTO dto : tenantDataSourceDubboDTOList) {
+                    if (dsName.equals(DataSourceConstant.TENANT_SOURCE_HEADER + dto.getTenantId())) {
+                        this.addDataSource(dto);
+                    }
                 }
             }
         }
     }
+
 }

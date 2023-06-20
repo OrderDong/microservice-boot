@@ -1,4 +1,4 @@
-package org.lwd.microservice.boot.common.aop;
+package org.lwd.microservice.boot.middle.ds.aop;
 
 import com.baomidou.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
 import lombok.extern.slf4j.Slf4j;
@@ -6,11 +6,15 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.lwd.microservice.boot.core.constant.DataSourceConstant;
+import org.lwd.microservice.boot.middle.ds.provider.DataSourceChangeProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -26,6 +30,11 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 @Slf4j
 public class DataSourceChangeAdvisor {
+
+    @Autowired
+    @SuppressWarnings("all")
+    DataSourceChangeProvider dataSourceChangeProvider;
+
     /**
      * 按需设置需要切换的模式
      */
@@ -35,6 +44,7 @@ public class DataSourceChangeAdvisor {
 
     /**
      * 需要定义模块的规则
+     *
      * @param joinPoint
      * @return
      * @throws Throwable
@@ -51,13 +61,13 @@ public class DataSourceChangeAdvisor {
                 String[] uriArr = uri.split("/");
                 if (uriArr[uriArr.length - 1].equals("detail")) {
                     log.info("datasource1------");
-                    DynamicDataSourceContextHolder.push("master");
+                    changeDataSource("master");
                 } else if (uriArr[uriArr.length - 1].equals("detail2")) {
                     log.info("datasource2------");
-                    DynamicDataSourceContextHolder.push("slave_1");
+                    changeDataSource("slave_1");
                 } else {
                     log.info("datasource dynamic 3------");
-                    DynamicDataSourceContextHolder.push("tenant_1");
+                    changeDataSource(DataSourceConstant.TENANT_SOURCE_HEADER + "1");
                 }
             }
         } catch (Exception e) {
@@ -65,6 +75,25 @@ public class DataSourceChangeAdvisor {
         } finally {
             return joinPoint.proceed();
         }
+    }
+
+    /**
+     * 切换数据源
+     *
+     * @param dsName 数据源名称
+     * @return
+     */
+    private void changeDataSource(String dsName) {
+        String currentDsName = DynamicDataSourceContextHolder.peek();
+        if (dsName.equals(currentDsName)) {
+            log.info("当前数据源为:{},无需切换", currentDsName);
+            return;
+        }
+
+        if (!DataSourceConstant.YAML_DATASOURCE_LIST.contains(dsName)) {
+            dataSourceChangeProvider.checkDataSourceAndLoad(dsName);
+        }
+        DynamicDataSourceContextHolder.push(dsName);
     }
 
 }

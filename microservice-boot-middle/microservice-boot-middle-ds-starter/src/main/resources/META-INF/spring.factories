@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  org.lwd.microservice.boot.middle.ds.config.DataSourceChangeConfig

@@ -1,4 +1,4 @@
-package org.lwd.microservice.boot.common.service;/**
+package org.lwd.microservice.boot.common.service.dubbo;/**
  * @author weidong
  * @description
  * @version V1.0.0

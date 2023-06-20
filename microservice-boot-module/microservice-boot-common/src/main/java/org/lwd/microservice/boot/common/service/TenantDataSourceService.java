@@ -5,6 +5,7 @@ import org.lwd.microservice.boot.core.entity.*;
 import org.lwd.microservice.boot.common.entity.TenantDataSource;
 import org.lwd.microservice.boot.common.entity.dto.TenantDataSourceDTO;
 import com.baomidou.mybatisplus.extension.service.IService;
+
 import java.util.List;
 
 /**
@@ -26,11 +27,11 @@ public interface TenantDataSourceService extends IService<TenantDataSource> {
     public BaseResult<Integer> saveTenantDataSource(TenantDataSourceDTO dto);
 
     /**
-    * 修改租户数据源
-    *
-    * @param dto 参数
-    * @return 修改结果
-    */
+     * 修改租户数据源
+     *
+     * @param dto 参数
+     * @return 修改结果
+     */
     public BaseResult<Integer> updateTenantDataSource(TenantDataSourceDTO dto);
 
     /**
@@ -60,9 +61,9 @@ public interface TenantDataSourceService extends IService<TenantDataSource> {
     public BaseResult<IPage<TenantDataSourceDTO>> selectTenantDataSourcePageByDto(IPage<TenantDataSource> page, TenantDataSourceDTO param);
 
     /**
-    * 根据主键查询DTO列表-不分页
-    *
-    * @return DTO
-    */
+     * 根据主键查询DTO列表-不分页
+     *
+     * @return DTO
+     */
     public BaseResult<List<TenantDataSourceDTO>> getTenantDataSourceList();
 }

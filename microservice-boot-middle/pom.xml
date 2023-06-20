@@ -11,6 +11,7 @@
     <packaging>pom</packaging>
 
     <artifactId>microservice-boot-middle</artifactId>
+    <version>1.0.0</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -19,6 +20,7 @@
 
     <modules>
         <module>microservice-boot-middle-generation</module>
+        <module>microservice-boot-middle-ds-starter</module>
     </modules>
 
 </project>

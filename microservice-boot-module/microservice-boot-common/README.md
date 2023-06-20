@@ -7,3 +7,5 @@
      2、多租户数据源动态切换
         基于dynamic-DataSource 3.5.1版本
      3、增加logback日志
+     4、增加动态数据源springboot starter
+

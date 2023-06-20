@@ -1,13 +1,15 @@
-package org.lwd.microservice.boot.common.interceptor;
+package org.lwd.microservice.boot.middle.ds.interceptor;
 
 import com.baomidou.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerInterceptor;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  * 动态数据源-拦截器模式-需要自定义规则
+ *
  * @author weidong
  * @version V1.0.0
  * @since 2023/6/16

@@ -16,12 +16,12 @@ import org.springframework.core.env.Environment;
 public class ProjectNameConfig implements EnvironmentAware {
 
     @Value("${spring.application.name}")
-    private  String applicationName;
+    private String applicationName;
 
     @Override
     public void setEnvironment(Environment environment) {
-        if(StringUtils.isBlank(System.getProperty("project.name"))){
-            System.setProperty("project.name",applicationName);
+        if (StringUtils.isBlank(System.getProperty("project.name"))) {
+            System.setProperty("project.name", applicationName);
         }
     }
 }

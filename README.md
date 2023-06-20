@@ -38,5 +38,36 @@ springboot2.X + dubbo3.1.0 + nacos2.1
 - 增加generation 代码生成器
 - 增加mysql连接，使用druid连接池
 
+## microservice-boot-1.0.2-dynamicDataSource
+- 1、多租户数据源（DB）管理 
+- 2、多租户数据源动态切换 
+```
+基于dynamic-DataSource 3.5.1版本 
+静态yaml配置切换
+动态DB数据源切换
+
+```
+- 3、增加logback日志 
+- 4、增加动态数据源springboot microservice-boot-middle-ds-starter动态数据源
+- 5、数据源starter中使用Dubbo获取DB数据源，实现多模块调用
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
