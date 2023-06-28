@@ -30,11 +30,12 @@ public class CodeGeneration {
         String projectPath = System.getProperty("user.dir") + "/microservice-boot-module/microservice-boot-common"; //获取项目路径
         String outerFilePath = projectPath + "/src/main/java";  //java下的文件路径
         String packageName = "org.lwd.microservice.boot.common";
-        String tableName = "t_tenant_data_source";
+        String tableName = "visit";
+        String dbName = "boot-common";
 
         System.out.println(projectPath);
         FastAutoGenerator.create(
-                new DataSourceConfig.Builder("jdbc:mysql://" + "127.0.0.1:3306/test", "root", "123456")
+                new DataSourceConfig.Builder("jdbc:mysql://" + "127.0.0.1:3306/"+dbName, "root", "123456")
                         .dbQuery(new MySqlQuery())
                         .typeConvert(new MySqlTypeConvert() {
                             @Override

@@ -26,6 +26,7 @@ import java.util.List;
 @Slf4j
 @Configuration
 @Import({
+        MyBatisPlusPaginationInnerConfig.class,
         DataSourceChangeProvider.class,
         DataSourceChangeAdvisor.class
 })

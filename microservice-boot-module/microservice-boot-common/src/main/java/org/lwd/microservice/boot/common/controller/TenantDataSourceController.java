@@ -5,7 +5,9 @@ import com.alibaba.fastjson2.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.lwd.microservice.boot.common.api.dto.TenantDataSourceDubboDTO;
+import org.lwd.microservice.boot.common.api.dto.VisitDubboDTO;
 import org.lwd.microservice.boot.common.api.dubbo.TenantDataSourceDubboService;
+import org.lwd.microservice.boot.common.api.dubbo.VisitDubboService;
 import org.lwd.microservice.boot.core.entity.*;
 import org.lwd.microservice.boot.core.constant.*;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -42,6 +44,9 @@ public class TenantDataSourceController {
 
     @DubboReference(check = false, timeout = 6000)
     TenantDataSourceDubboService tenantDataSourceDubboService;
+
+    @DubboReference(check = false, timeout = 6000)
+    VisitDubboService visitDubboService;
 
     /**
      * 保存租户数据源
@@ -83,6 +88,11 @@ public class TenantDataSourceController {
      */
     @GetMapping("detail")
     public WebResult<TenantDataSourceVO> detailTenantDataSourceByPk(@Validated @NotEmpty String pk) {
+
+        VisitDubboDTO visitDubboDTO = new VisitDubboDTO();
+        visitDubboDTO.setServerIpAddress("1.1.1.1");
+        visitDubboService.saveVisitDubboService(visitDubboDTO);
+
         WebResult<TenantDataSourceVO> webResult = WebResult.success();
         BaseResult<TenantDataSourceDTO> baseResult = this.tenantDataSourceService.getTenantDataSourceByPk(pk);
 

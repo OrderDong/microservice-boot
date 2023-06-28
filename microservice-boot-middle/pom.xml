@@ -21,6 +21,8 @@
     <modules>
         <module>microservice-boot-middle-generation</module>
         <module>microservice-boot-middle-ds-starter</module>
+        <module>microservice-boot-middle-log-starter</module>
+        <module>microservice-boot-middle-runtime-starter</module>
     </modules>
 
 </project>

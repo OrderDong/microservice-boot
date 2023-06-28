@@ -22,7 +22,7 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Accessors(chain = true)
-@TableName("t_tenant_data_source")
+@TableName("tenant_data_source")
 public class TenantDataSource implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -46,7 +46,7 @@ public class TenantDataSource implements Serializable {
     private String tenantName;
 
     /**
-     * db类型 1:mysql 
+     * db类型 1:mysql
      */
     @TableField("jdbc_type")
     private Integer jdbcType;
@@ -76,7 +76,7 @@ public class TenantDataSource implements Serializable {
     private String jdbcPassword;
 
     /**
-     * 类型状态 -1删除 0禁用 1启用 
+     * 类型状态 -1删除 0禁用 1启用
      */
     @TableField("`status`")
     private Integer status;

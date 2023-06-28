@@ -132,7 +132,7 @@ public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.m
     * @return DTO
     */
     @Override
-    public BaseResult<List<${entity}DTO>> getTenantDataSourceList() {
+    public BaseResult<List<${entity}DTO>> get${entity}List() {
         BaseResult<List<${entity}DTO>> baseResult = BaseResult.success();
         QueryWrapper<${entity}> queryWrapper = Wrappers.query();
         List<${entity}> ${entity?uncap_first}List = this.getBaseMapper().selectList(queryWrapper);

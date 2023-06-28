@@ -53,7 +53,7 @@ See here for more details: http://gordondickens.com/wordpress/2013/03/27/sawing-
         <appender-ref ref="KAFKA"/>
     </logger>-->
 
-    <logger name="com.lwd.microservice.boo.*" level="INFO"/>
+    <logger name="com.lwd.microservice.boot.*" level="INFO"/>
     <logger name="org.springframework" level="INFO"/>
     <logger name="druid.sql.Statement" level="info"/>
     <root level="info">

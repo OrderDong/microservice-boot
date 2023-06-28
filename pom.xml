@@ -45,7 +45,13 @@
         <slf4j-api.version>1.7.24</slf4j-api.version>
         <lombok.version>1.18.8</lombok.version>
         <common-lang3.version>3.8.1</common-lang3.version>
+        <common-io.version>2.11.0</common-io.version>
+        <commons-collections.version>3.2.2</commons-collections.version>
+        <commons-pool2.version>2.11.0</commons-pool2.version>
         <hutools.version>5.8.18</hutools.version>
+        <transmittable.version>2.14.2</transmittable.version>
+        <fastjson2.version>2.0.7</fastjson2.version>
+        <guava.version>31.1-jre</guava.version>
 
         <!-- project -->
         <common-all-version>1.0.0</common-all-version>
@@ -72,6 +78,18 @@
                 <version>${common-all-version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.lwd.microservice.boot</groupId>
+                <artifactId>microservice-boot-middle-log-starter</artifactId>
+                <version>${common-all-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.lwd.microservice.boot</groupId>
+                <artifactId>microservice-boot-middle-runtime-starter</artifactId>
+                <version>${common-all-version}</version>
+            </dependency>
+
 
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -89,9 +107,34 @@
                 <version>${common-lang3.version}</version>
             </dependency>
             <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${common-io.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>${commons-collections.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-pool2</artifactId>
+                <version>${commons-pool2.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutools.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
             </dependency>
 
             <!-- Dubbo Spring Boot Starter -->
@@ -180,6 +223,15 @@
                 <version>${velocity-version}</version>
             </dependency>
             <!-- 代码生成插件 end -->
+
+            <!-- 线程相关 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>${transmittable.version}</version>
+            </dependency>
+
+
         </dependencies>
 
     </dependencyManagement>

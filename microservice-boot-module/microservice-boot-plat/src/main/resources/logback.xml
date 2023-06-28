@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- configuration file for LogBack (slf4J implementation)
+See here for more details: http://gordondickens.com/wordpress/2013/03/27/sawing-through-the-java-loggers/ -->
+<configuration scan="true" scanPeriod="30 seconds">
+
+    <contextName>microservice-boot-plat-log</contextName>
+
+    <property name="log.path" value="/Users/weidong/data/logs/microservice-boot-plat"/>
+    <property name="server.name" value="microservice-boot-plat"/>
+    <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+    <property name="log.pattern"
+              value="%-5level %d{yyyy-MM-dd HH:mm:ss.SSS} - %logger{0} traceId:%X{traceId} - %msg%n"/>
+    <property name="log.file" value="${log.path}/%d{yyyy-MM-dd}.log.gz"/>
+    <property name="log.error.file" value="${log.path}/error.log"/>
+
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
+    <!-- To enable JMX Management -->
+    <jmxConfigurator/>
+    <appender name="log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.file}</fileNamePattern>
+            <maxHistory>15</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <!--控制台输出 -->
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- kafka输出 -->
+    <!--<appender name="KAFKA" class="io.confluent.log4j5.KafkaAppender">
+        <destinationTopic>kafka_topic_name</destinationTopic>
+        <keySerializer>org.apache.kafka.common.serialization.StringSerializer</keySerializer>
+        <valueSerializer>org.apache.kafka.common.serialization.StringSerializer</valueSerializer>
+        <producerConfigurations>
+            <property>
+                <name>bootstrap.servers</name>
+                <value>kafka_broker_server:9092</value>
+            </property>
+        </producerConfigurations>
+    </appender>
+
+    <logger name="com.example" level="INFO" additivity="false">
+        <appender-ref ref="KAFKA"/>
+    </logger>-->
+
+    <logger name="com.lwd.microservice.boot.*" level="INFO"/>
+    <logger name="org.springframework" level="INFO"/>
+    <logger name="druid.sql.Statement" level="info"/>
+    <root level="info">
+        <!--<appender-ref ref="log"/>-->
+        <!--<appender-ref ref="KAFKA" />-->
+        <appender-ref ref="stdout"/>
+    </root>
+</configuration>

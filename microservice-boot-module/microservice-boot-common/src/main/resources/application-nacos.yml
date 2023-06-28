@@ -1,4 +1,3 @@
-
 #tomcat配置
 server:
   port: 8021
@@ -20,11 +19,23 @@ dubbo:
     parameters:
       namespace: 211d0b5e-2267-4309-9df8-316f0af96394
   scan:
-    base-packages: org.lwd.microservice.boot.common.service.dubbo
-
+    base-packages: org.lwd.microservice.boot.common.service
+  provider:
+    cluster: failfast
+    retries: -1
+    timeout: 6000
+    #    token: true
+    dynamic: true
+    delay: -1
+    version: 1.0.0
+    filter: dubboTraceIdFilter
+  consumer: # Dubbo 消费端配置
+    check: false
+    validation: true
+    version: 1.0.0
+    filter: dubboTraceIdFilter
+    retries: -1
 spring:
-  application:
-    name: microservice-boot-common
   # Jackson 配置项
   jackson:
     #    serialization:
@@ -72,12 +83,12 @@ spring:
           name: master
         master:
           driver-class-name: com.mysql.jdbc.Driver # 3.2.0开始支持SPI可省略此配置
-          url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&allowPublicKeyRetrieval=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&allowMultiQueries=true&nullCatalogMeansCurrent=true
+          url: jdbc:mysql://127.0.0.1:3306/boot-common?useUnicode=true&allowPublicKeyRetrieval=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&allowMultiQueries=true&nullCatalogMeansCurrent=true
           username: root
           password: 123456
         slave_1:
           driver-class-name: com.mysql.jdbc.Driver
-          url: jdbc:mysql://127.0.0.1:3306/test2?useUnicode=true&allowPublicKeyRetrieval=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&allowMultiQueries=true&nullCatalogMeansCurrent=true
+          url: jdbc:mysql://127.0.0.1:3306/boot-common?useUnicode=true&allowPublicKeyRetrieval=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&allowMultiQueries=true&nullCatalogMeansCurrent=true
           username: root
           password: 123456
 

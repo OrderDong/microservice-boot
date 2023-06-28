@@ -6,3 +6,15 @@ GET http://localhost:8022/dubbo/testTimeout
 Accept: application/json
 
 ###
+GET http://localhost:8022/test/tget?name=llwd
+
+###
+
+POST http://localhost:8022/test/tpost
+Content-Type: application/json
+
+{
+  "id": "1",
+  "name": "lwd",
+  "sex": 1
+}
