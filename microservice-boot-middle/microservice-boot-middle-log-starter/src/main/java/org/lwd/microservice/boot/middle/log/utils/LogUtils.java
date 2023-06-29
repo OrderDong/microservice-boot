@@ -68,8 +68,8 @@ public class LogUtils {
             operationLogDTO.setResultData(null);
             printlnLog(logConsoleTypeEnum.getName(), operationLogDTO);
         } else {
-//            if (operateLog.saveDB() && !operateLog.logType().equals(LogTypeEnum.SELECT)) {
-            if (operateLog.saveDB()) {
+            //可按不同级别保存日志内容
+            if (operateLog.saveDB() && logConsoleTypeEnum.getName().equals("API")) {
                 ModuleLogService moduleLogService = SpringContextUtil.getBeanSkipCheck(ModuleLogService.class);
                 if (moduleLogService != null) {
                     // 保存日志到db
@@ -221,7 +221,6 @@ public class LogUtils {
         }
     }
 */
-
     private static void printlnLog(String type, OperationLogDTO dto) {
         String traceId = dto.getTraceId();
         dto.setTraceId(null);
@@ -242,6 +241,6 @@ public class LogUtils {
         String clientIp = dto.getClientIp();
         dto.setClientIp(null);
 
-        log.info("[" + type + "日志]: traceId:{} clientIp:{} userId:{} tenantId:{} requestUrl:{} requestMethod:{} title:{} javaMethod:{} methodParams:{} other:{}",traceId, clientIp, userId, tenantId, requestUrl, requestMethod, title, javaMethod, methodParams, JSON.toJSONString(dto));
+        log.info("[" + type + "日志]: traceId:{} clientIp:{} userId:{} tenantId:{} requestUrl:{} requestMethod:{} title:{} javaMethod:{} methodParams:{} other:{}", traceId, clientIp, userId, tenantId, requestUrl, requestMethod, title, javaMethod, methodParams, JSON.toJSONString(dto));
     }
 }

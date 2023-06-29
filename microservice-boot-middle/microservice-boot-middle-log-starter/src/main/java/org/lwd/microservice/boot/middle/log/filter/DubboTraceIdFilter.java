@@ -11,16 +11,10 @@ import org.slf4j.MDC;
 /**
  * traceId过滤器
  *
- * @author: virtiL
- */
-
-/**
- * traceId过滤器
- *
- * @author: virtiL
+ * @author lwd
  */
 @Slf4j
-@Activate(group = {CommonConstants.CONSUMER, CommonConstants.PROVIDER})
+@Activate(group = {CommonConstants.PROVIDER})
 public class DubboTraceIdFilter implements Filter {
 
     @Override

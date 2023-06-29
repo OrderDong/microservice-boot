@@ -12,9 +12,10 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 /**
- * @Description: 系统日志
- * @Author: virtiL
- * @Time: 2021/7/26 15:23
+ * 系统服务日志
+ *
+ * @author lwd
+ * @since 2023/06/20
  */
 @Slf4j
 @Aspect
@@ -37,10 +38,10 @@ public class ServiceLogAspect {
         try {
             // 执行目标方法
             result = joinPoint.proceed();
-            LogUtils.doLog(LogConsoleTypeEnum.SERVICE,joinPoint, null, startTime, result, null);
+            LogUtils.doLog(LogConsoleTypeEnum.SERVICE, joinPoint, null, startTime, result, null);
             return result;
         } catch (Throwable exception) {
-            LogUtils.doLog(LogConsoleTypeEnum.SERVICE,joinPoint, null, startTime, null, exception);
+            LogUtils.doLog(LogConsoleTypeEnum.SERVICE, joinPoint, null, startTime, null, exception);
             throw exception;
         }
     }

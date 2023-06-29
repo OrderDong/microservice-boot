@@ -18,3 +18,8 @@ Content-Type: application/json
   "name": "lwd",
   "sex": 1
 }
+
+###
+GET http://localhost:8022/test/detail?pk=llwd
+
+###

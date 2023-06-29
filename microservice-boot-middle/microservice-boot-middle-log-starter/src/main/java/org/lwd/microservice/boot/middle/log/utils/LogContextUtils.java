@@ -29,8 +29,8 @@ public class LogContextUtils {
     public static void setLogContent(String content) {
         if (StrUtil.isNotBlank(content)) {
             String exist = logContext.get();
-            if(StrUtil.isNotBlank(exist)){
-                content = exist+","+content;
+            if (StrUtil.isNotBlank(exist)) {
+                content = exist + "," + content;
             }
             logContext.set(content);
             //MDC.put(CONTEXT_ID,content);

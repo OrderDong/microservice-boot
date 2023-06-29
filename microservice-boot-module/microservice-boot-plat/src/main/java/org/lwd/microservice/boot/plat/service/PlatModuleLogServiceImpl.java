@@ -1,3 +1,4 @@
+
 package org.lwd.microservice.boot.plat.service;
 
 import com.alibaba.fastjson2.JSON;
@@ -11,11 +12,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.concurrent.Future;
 
+
 /**
  * @author weidong
  * @version V1.0.0
  * @since 2023/6/27
  */
+
 @Slf4j
 @Service
 public class PlatModuleLogServiceImpl implements ModuleLogService {
@@ -31,10 +34,11 @@ public class PlatModuleLogServiceImpl implements ModuleLogService {
 
     @Override
     public Boolean savePlatLog(OperationLogDTO operateLogDTO) {
-        log.info("----PlatModuleLogServiceImpl savePlatLog---:{}", JSON.toJSONString(operateLogDTO));
+       // log.info("----PlatModuleLogServiceImpl savePlatLog---:{}", JSON.toJSONString(operateLogDTO));
         VisitDubboDTO visitDubboDTO = new VisitDubboDTO();
         visitDubboDTO.setServerIpAddress(operateLogDTO.getClientIp());
         visitDubboService.saveVisitDubboService(visitDubboDTO);
         return null;
     }
 }
+

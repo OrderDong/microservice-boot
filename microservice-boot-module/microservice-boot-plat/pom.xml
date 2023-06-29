@@ -25,13 +25,13 @@
         </dependency>
         <dependency>
             <groupId>org.lwd.microservice.boot</groupId>
+            <artifactId>microservice-boot-middle-runtime-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.lwd.microservice.boot</groupId>
             <artifactId>microservice-boot-middle-ds-starter</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.lwd.microservice.boot</groupId>
-            <artifactId>microservice-boot-middle-runtime-starter</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.lwd.microservice.boot</groupId>
             <artifactId>microservice-boot-middle-log-starter</artifactId>

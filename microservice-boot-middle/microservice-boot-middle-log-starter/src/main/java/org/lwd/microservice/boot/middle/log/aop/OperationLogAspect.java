@@ -14,6 +14,7 @@ import java.util.Date;
 
 /**
  * 切面，日志拦截的逻辑
+ *
  * @author weidong
  * @version V1.0.0
  * @since 2023/6/21
@@ -34,10 +35,10 @@ public class OperationLogAspect {
         try {
             // 执行目标方法
             result = joinPoint.proceed();
-            LogUtils.doLog(LogConsoleTypeEnum.API,joinPoint, operateLog, startTime, result, null);
+            LogUtils.doLog(LogConsoleTypeEnum.API, joinPoint, operateLog, startTime, result, null);
             return result;
         } catch (Throwable exception) {
-            LogUtils.doLog(LogConsoleTypeEnum.API,joinPoint, operateLog, startTime, null, exception);
+            LogUtils.doLog(LogConsoleTypeEnum.API, joinPoint, operateLog, startTime, null, exception);
             throw exception;
         }
     }

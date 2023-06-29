@@ -27,12 +27,10 @@ dubbo:
     #    token: true
     dynamic: true
     delay: -1
-    version: 1.0.0
     filter: dubboTraceIdFilter
   consumer: # Dubbo 消费端配置
     check: false
     validation: true
-    version: 1.0.0
     filter: dubboTraceIdFilter
     retries: -1
 spring:

@@ -8,10 +8,8 @@ import java.util.concurrent.Future;
 /**
  * 日志保存拓展接口
  *
- * @author virtiL
- * @version 1.0.0.0
- * @time: 2022/6/12 22:30
- * @see
+ * @author lwd
+ * @since 2023/06/20
  */
 public interface ModuleLogService {
 

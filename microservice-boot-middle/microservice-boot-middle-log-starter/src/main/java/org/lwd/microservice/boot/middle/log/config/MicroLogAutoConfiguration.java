@@ -2,8 +2,9 @@ package org.lwd.microservice.boot.middle.log.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.lwd.microservice.boot.core.constant.FilterOrderConstant;
+import org.lwd.microservice.boot.middle.log.aop.DubboServiceLogAspect;
 import org.lwd.microservice.boot.middle.log.aop.OperationLogAspect;
-import org.lwd.microservice.boot.middle.log.filter.DubboTraceIdFilter;
+import org.lwd.microservice.boot.middle.log.aop.ServiceLogAspect;
 import org.lwd.microservice.boot.middle.log.filter.WebTraceIdFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +14,7 @@ import org.springframework.core.annotation.Order;
  * 操作日志自动装配
  *
  * @author lwd
- * @since  2023/6/10
+ * @since 2023/6/10
  */
 @Slf4j
 @Order(FilterOrderConstant.LOG_FILTER)
@@ -23,22 +24,27 @@ public class MicroLogAutoConfiguration {
         log.info("log组件装配完成...");
     }
 
+//    @Bean
+//    public DubboTraceIdFilter dubboTraceIdFilter(){return new DubboTraceIdFilter();}
+
     @Bean
-    public DubboTraceIdFilter dubboTraceIdFilter(){return new DubboTraceIdFilter();}
+    public WebTraceIdFilter webTraceIdFilter() {
+        return new WebTraceIdFilter();
+    }
 
     @Bean
     public OperationLogAspect operationLogInterceptorAspect() {
         return new OperationLogAspect();
     }
 
-    /*@Bean
-    SystemLogAspect systemLogAspect() {
-        return new SystemLogAspect();
-    }*/
+    @Bean
+    public ServiceLogAspect serviceLogAspect() {
+        return new ServiceLogAspect();
+    }
 
     @Bean
-    public WebTraceIdFilter webTraceIdFilter() {
-        return new WebTraceIdFilter();
+    public DubboServiceLogAspect dubboServiceLogAspect() {
+        return new DubboServiceLogAspect();
     }
 
 }

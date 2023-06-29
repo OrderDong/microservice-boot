@@ -13,10 +13,8 @@ import java.io.Serializable;
 /**
  * 操作日志对象
  *
- * @author virtiL
- * @version 1.0.0.0
- * @time: 2022/6/12 21:40
- * @see
+ * @author lwd
+ * @since 2023/06/20
  */
 @Slf4j
 @Getter
