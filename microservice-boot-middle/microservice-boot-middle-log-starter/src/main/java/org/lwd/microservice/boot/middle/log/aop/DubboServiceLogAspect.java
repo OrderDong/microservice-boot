@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 /**
- * 系统服务日志
+ * dubbo服务日志
  *
  * @author lwd
  * @since 2023/06/20

@@ -8,7 +8,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- *
+ * 操作参数定义
  * @author weidong
  * @version V1.0.0
  * @since 2023/6/21

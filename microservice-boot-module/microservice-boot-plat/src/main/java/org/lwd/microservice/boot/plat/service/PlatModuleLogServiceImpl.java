@@ -34,7 +34,7 @@ public class PlatModuleLogServiceImpl implements ModuleLogService {
 
     @Override
     public Boolean savePlatLog(OperationLogDTO operateLogDTO) {
-       // log.info("----PlatModuleLogServiceImpl savePlatLog---:{}", JSON.toJSONString(operateLogDTO));
+        log.info("----PlatModuleLogServiceImpl savePlatLog---:{}", JSON.toJSONString(operateLogDTO));
         VisitDubboDTO visitDubboDTO = new VisitDubboDTO();
         visitDubboDTO.setServerIpAddress(operateLogDTO.getClientIp());
         visitDubboService.saveVisitDubboService(visitDubboDTO);
