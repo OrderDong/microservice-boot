@@ -27,11 +27,11 @@ import static com.baomidou.mybatisplus.generator.config.rules.DbColumnType.INTEG
 public class CodeGeneration {
     public static void main(String[] args) {
 
-        String projectPath = System.getProperty("user.dir") + "/microservice-boot-module/microservice-boot-common"; //获取项目路径
+        String projectPath = System.getProperty("user.dir") + "/microservice-boot-module/microservice-boot-plat"; //获取项目路径
         String outerFilePath = projectPath + "/src/main/java";  //java下的文件路径
-        String packageName = "org.lwd.microservice.boot.common";
-        String tableName = "visit";
-        String dbName = "boot-common";
+        String packageName = "org.lwd.microservice.boot.plat";
+        String tableName = "user_login";
+        String dbName = "boot-plat";
 
         System.out.println(projectPath);
         FastAutoGenerator.create(

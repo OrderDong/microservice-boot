@@ -1,5 +1,5 @@
 
-package org.lwd.microservice.boot.plat.service;
+package org.lwd.microservice.boot.plat.service.impl;
 
 import com.alibaba.fastjson2.JSON;
 import lombok.extern.slf4j.Slf4j;

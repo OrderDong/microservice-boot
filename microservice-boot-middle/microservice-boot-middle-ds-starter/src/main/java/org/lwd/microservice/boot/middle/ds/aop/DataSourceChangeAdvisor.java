@@ -59,7 +59,8 @@ public class DataSourceChangeAdvisor {
                 String uri = request.getRequestURI();
                 //String url = request.getRequestURL().toString();
                 String[] uriArr = uri.split("/");
-                if (uriArr[uriArr.length - 1].equals("detail")) {
+                //测试切换数据源去掉
+                /*if (uriArr[uriArr.length - 1].equals("detail")) {
                     log.info("datasource1------");
                     changeDataSource("master");
                 } else if (uriArr[uriArr.length - 1].equals("detail2")) {
@@ -68,7 +69,7 @@ public class DataSourceChangeAdvisor {
                 } else {
                     log.info("datasource dynamic 3------");
                     changeDataSource(DataSourceConstant.TENANT_SOURCE_HEADER + "1");
-                }
+                }*/
             }
         } catch (Exception e) {
             log.error("日志拦截异常", e);

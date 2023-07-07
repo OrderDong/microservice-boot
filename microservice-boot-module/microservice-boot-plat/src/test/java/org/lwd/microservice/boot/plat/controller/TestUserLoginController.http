@@ -1,0 +1,12 @@
+## 借用enabled，控制是否后续dubbo服务是否执行成功
+POST http://localhost:8022/userLogin/seataAdd
+Content-Type: application/json
+
+{
+  "userLoginId": "lwd2@qq.com",
+  "currentPassword": "123456",
+  "createById": 1,
+  "createByName": "lwd",
+  "createTime": "2023-07-04 16:03:10",
+  "enabled": 0
+}

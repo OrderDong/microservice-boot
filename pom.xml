@@ -40,6 +40,7 @@
 
         <!-- 微服务相关 -->
         <nacos-config.version>0.2.10</nacos-config.version>
+        <io.seata.version>1.6.1</io.seata.version>
 
         <!-- 公共 -->
         <slf4j-api.version>1.7.24</slf4j-api.version>
@@ -69,6 +70,12 @@
             <dependency>
                 <groupId>org.lwd.microservice.boot</groupId>
                 <artifactId>microservice-boot-core</artifactId>
+                <version>${common-all-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.lwd.microservice.boot</groupId>
+                <artifactId>microserivice-boot-plat-api</artifactId>
                 <version>${common-all-version}</version>
             </dependency>
 
@@ -231,6 +238,12 @@
                 <version>${transmittable.version}</version>
             </dependency>
 
+            <!--分布式事务 -->
+            <dependency>
+                <groupId>io.seata</groupId>
+                <artifactId>seata-spring-boot-starter</artifactId>
+                <version>${io.seata.version}</version>
+            </dependency>
 
         </dependencies>
 

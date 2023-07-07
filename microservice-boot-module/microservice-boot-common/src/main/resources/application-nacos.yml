@@ -111,3 +111,35 @@ mybatis-plus:
   type-aliases-package: org.lwd.microservice.boot.common.dao
   mapper-locations: classpath*:/mapper/**/*.xml
 
+
+  # seata 配置
+seata:
+  application-id: ${spring.application.name}
+  config:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      namespace: fb91b495-9490-436f-b9cd-023f2ca42b08
+      group: SEATA_GROUP
+      username: nacos
+      password: nacos
+      context-path:
+      ##if use MSE Nacos with auth, mutex with username/password attribute
+      #access-key:
+      #secret-key:
+      data-id: seataServer.properties
+  # 默认就是这个额，可以不配置
+  tx-service-group: default_tx_group
+  registry:
+    custom:
+      name: ${spring.application.name}
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      application: seata-server
+      group: SEATA_GROUP
+      namespace: 920bb73f-17da-4128-9de0-41893097ce38
+      username: nacos
+      password: nacos
+
+

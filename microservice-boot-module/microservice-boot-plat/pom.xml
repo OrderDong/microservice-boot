@@ -25,6 +25,10 @@
         </dependency>
         <dependency>
             <groupId>org.lwd.microservice.boot</groupId>
+            <artifactId>microserivice-boot-plat-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.lwd.microservice.boot</groupId>
             <artifactId>microservice-boot-middle-runtime-starter</artifactId>
         </dependency>
         <dependency>
@@ -94,6 +98,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <dependency>
+            <groupId>io.seata</groupId>
+            <artifactId>seata-spring-boot-starter</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>
