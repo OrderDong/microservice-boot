@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.lwd.microservice.boot.plat.dao.UserLoginMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.lwd.microservice.boot.plat.entity.UserLogin">
+        <id column="id" property="id" />
+        <result column="user_login_id" property="userLoginId" />
+        <result column="current_password" property="currentPassword" />
+        <result column="password_hint" property="passwordHint" />
+        <result column="mobile" property="mobile" />
+        <result column="is_system" property="isSystem" />
+        <result column="enabled" property="enabled" />
+        <result column="require_password_change" property="requirePasswordChange" />
+        <result column="last_currency_uom" property="lastCurrencyUom" />
+        <result column="last_locale" property="lastLocale" />
+        <result column="last_time_zone" property="lastTimeZone" />
+        <result column="disabled_date_time" property="disabledDateTime" />
+        <result column="external_auth_id" property="externalAuthId" />
+        <result column="deleted_tag" property="deletedTag" />
+        <result column="party_id" property="partyId" />
+        <result column="create_by_id" property="createById" />
+        <result column="create_time" property="createTime" />
+        <result column="create_by_name" property="createByName" />
+        <result column="update_by_id" property="updateById" />
+        <result column="update_time" property="updateTime" />
+        <result column="update_by_name" property="updateByName" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_login_id, current_password, password_hint, mobile, is_system, enabled, require_password_change, last_currency_uom, last_locale, last_time_zone, disabled_date_time, external_auth_id, deleted_tag, party_id, create_by_id, create_time, create_by_name, update_by_id, update_time, update_by_name
+    </sql>
+
+</mapper>
