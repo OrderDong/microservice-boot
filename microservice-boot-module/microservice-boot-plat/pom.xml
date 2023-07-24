@@ -41,7 +41,10 @@
             <artifactId>microservice-boot-middle-log-starter</artifactId>
         </dependency>
 
-
+        <dependency>
+            <groupId>org.lwd.microservice.boot</groupId>
+            <artifactId>microservice-boot-middle-sentinel-starter</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

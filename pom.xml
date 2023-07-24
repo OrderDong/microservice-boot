@@ -41,6 +41,7 @@
         <!-- 微服务相关 -->
         <nacos-config.version>0.2.10</nacos-config.version>
         <io.seata.version>1.6.1</io.seata.version>
+        <sentinel.version>1.8.6</sentinel.version>
 
         <!-- 公共 -->
         <slf4j-api.version>1.7.24</slf4j-api.version>
@@ -94,6 +95,11 @@
             <dependency>
                 <groupId>org.lwd.microservice.boot</groupId>
                 <artifactId>microservice-boot-middle-runtime-starter</artifactId>
+                <version>${common-all-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.lwd.microservice.boot</groupId>
+                <artifactId>microservice-boot-middle-sentinel-starter</artifactId>
                 <version>${common-all-version}</version>
             </dependency>
 
@@ -244,6 +250,28 @@
                 <artifactId>seata-spring-boot-starter</artifactId>
                 <version>${io.seata.version}</version>
             </dependency>
+            <!--流控 -->
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-core</artifactId>
+                <version>${sentinel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-transport-simple-http</artifactId>
+                <version>${sentinel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-annotation-aspectj</artifactId>
+                <version>${sentinel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-parameter-flow-control</artifactId>
+                <version>${sentinel.version}</version>
+            </dependency>
+
 
         </dependencies>
 

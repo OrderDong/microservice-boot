@@ -138,6 +138,12 @@ seata:
       namespace: 920bb73f-17da-4128-9de0-41893097ce38
       username: nacos
       password: nacos
-
-
+#自定义sentinel配置
+lwd:
+  sentinel:
+    dashboard:
+      name: ${spring.application.name}
+      server: localhost:7080
+    api:
+      addr: localhost:8719
 
