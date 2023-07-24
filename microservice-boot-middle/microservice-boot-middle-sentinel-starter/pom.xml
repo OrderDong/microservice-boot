@@ -94,6 +94,13 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
         </dependency>
 
+        <!-- SpringCloud ailibaba sentinel-datasource-nacos 后续做持久化 -->
+       <!-- <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+            <version>2.2.5.RELEASE</version>
+        </dependency>-->
+
     </dependencies>
 
 </project>

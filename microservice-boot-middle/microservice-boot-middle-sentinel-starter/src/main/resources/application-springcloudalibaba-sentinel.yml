@@ -1,0 +1,21 @@
+# 只是参考使用
+spring:
+  cloud:
+    sentinel:
+      transport:
+        dashboard: localhost:7080 # 配置Sentinel dashboard地址
+        heartbeat-interval-ms: 500
+        client-ip: localhost:8719 # 配置Sentinel api地址
+      datasource:
+        ds1:
+          nacos: # 关注点，添加Nacos数据源配置
+            server-addr: localhost:8848
+            dataId: cloudalibaba-sentinel-plat-server
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
+
+
+
+
+
