@@ -21,6 +21,7 @@
     <modules>
         <module>microservice-boot-common</module>
         <module>microservice-boot-plat</module>
+        <module>microservice-boot-es</module>
     </modules>
 
 

@@ -1,0 +1,34 @@
+
+## 新增日志
+POST http://localhost:8023/es/saveVisitLog
+Content-Type: application/json
+
+{
+  "id": 3,
+  "tableName": "VisitLog",
+  "userLoginId": 3,
+  "serverIpAddress": "127.0.0.1",
+  "serverHostName": "weidong",
+  "initialRequest": "http://localhost:8023",
+  "msgContent": "test es add3",
+  "createTime": "2023-07-27 16:34:36"
+}
+
+
+### 获取所有数据-不分页
+
+GET http://localhost:8023/es/getVisitLogAll
+
+### 获取所有数据-自定义查询规则
+
+GET http://localhost:8023/es/getVisitLogByUserLoginId?userLoginId=1
+
+### 获取所有数据-high rest
+
+GET http://localhost:8023/es/getHighTempt
+
+### 获取所有数据-reactive rest
+
+GET http://localhost:8023/es/getReactiveTemp
+
+

@@ -71,6 +71,11 @@ springboot2.X + dubbo3.1.0 + nacos2.1
 - 4、springboot sentinel nacos 配置和starter制作
 - 5、springcloudalibaba sentinel 配置介绍
 
+## springboot 基础版本升级
+
+springboot:                 2.7.10
+dubbo-spring-boot-starter:  3.2.0
+
 
 
 
