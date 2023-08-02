@@ -31,4 +31,8 @@ GET http://localhost:8023/es/getHighTempt
 
 GET http://localhost:8023/es/getReactiveTemp
 
+### 获取所有数据-elasticsearch client 7.17.9
+
+GET http://localhost:8023/es/getRestTemp
+
 

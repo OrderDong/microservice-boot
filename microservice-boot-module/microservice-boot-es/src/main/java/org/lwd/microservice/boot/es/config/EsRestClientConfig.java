@@ -1,36 +1,34 @@
 package org.lwd.microservice.boot.es.config;
 
-import org.elasticsearch.client.RestHighLevelClient;
+import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.json.jackson.JacksonJsonpMapper;
+import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.rest_client.RestClientTransport;
+import org.apache.http.HttpHost;
+import org.elasticsearch.client.RestClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.elasticsearch.client.ClientConfiguration;
-import org.springframework.data.elasticsearch.client.RestClients;
-import org.springframework.data.elasticsearch.config.AbstractElasticsearchConfiguration;
 
 /**
- * rest风格客户端
- * The Java High Level REST Client is the default client of Elasticsearch, it is configured like shown:
+ * 使用elasticsearch client 7.17.9
  *
  * @author weidong
  * @version V1.0.0
- * @since 2023/7/27
+ * @since 2023/7/31
  */
 @Configuration
-public class EsRestClientConfig extends AbstractElasticsearchConfiguration {
-
+public class EsRestClientConfig {
     @Value("${spring.elasticsearch.uris}")
     private String uris;
 
-    @Override
     @Bean
-    public RestHighLevelClient elasticsearchClient() {
+    public ElasticsearchClient initSyncRestClient() {
+        RestClient restClient = RestClient.builder(HttpHost.create(uris)).build();
+        ElasticsearchTransport transport = new RestClientTransport(
+                restClient, new JacksonJsonpMapper());
+        ElasticsearchClient client = new ElasticsearchClient(transport);
 
-        final ClientConfiguration clientConfiguration = ClientConfiguration.builder()
-                .connectedTo(uris)
-                .build();
-
-        return RestClients.create(clientConfiguration).rest();
+        return client;
     }
-
 }

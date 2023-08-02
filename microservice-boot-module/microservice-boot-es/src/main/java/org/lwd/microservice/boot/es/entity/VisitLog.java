@@ -63,4 +63,9 @@ public class VisitLog implements Serializable {
      */
     private Date createTime;
 
+    /**
+     * spring data elasticsearch 自动加入?
+     *
+     */
+    private String _class;
 }
